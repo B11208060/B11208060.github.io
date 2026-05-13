@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>樂高 LEGO 的稱霸之路：資源與能耐的神級演出</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Noto+Sans+TC:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        lego: {
+                            red: '#D11013',
+                            yellow: '#FFD500',
+                            blue: '#0055BF',
+                            black: '#121212',
+                            gray: '#F2F2F2',
+                        },
+                        dark: {
+                            bg: '#0F172A',
+                            card: '#1E293B',
+                            accent: '#38BDF8'
+                        }
+                    },
+                    fontFamily: {
+                        display: ['Outfit', 'Noto Sans TC', 'sans-serif'],
+                        body: ['Inter', 'Noto Sans TC', 'sans-serif'],
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0F172A;
+            color: #E2E8F0;
+            overflow-x: hidden;
+        }
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+        }
+        .lego-gradient-text {
+            background: linear-gradient(90deg, #FFD500, #FBBF24, #D11013);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero-mask {
+            mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0F172A;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+        .bento-item {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .bento-item:hover {
+            transform: translateY(-5px);
+            border-color: rgba(56, 189, 248, 0.4);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body class="font-body selection:bg-lego-yellow selection:text-lego-black">
+
+    <!-- Hero Section -->
+    <header class="relative w-full h-[80vh] flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0 hero-mask">
+            <img src='https://opal.google/board/blobs/187ac61d-bb9f-4d81-966a-6f498cab0bab' alt='LEGO Banner' class="w-full h-full object-cover opacity-60 scale-105" />
+            <div class="absolute inset-0 bg-gradient-to-t from-dark-bg via-transparent to-transparent"></div>
+        </div>
+        
+        <div class="relative z-10 container mx-auto px-6 text-center">
+            <div class="inline-block px-4 py-1.5 mb-6 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-sm font-semibold tracking-widest text-lego-yellow uppercase animate-pulse">
+                Case Study: B11208060
+            </div>
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-black font-display leading-tight mb-6">
+                這塊積木<span class="lego-gradient-text">不簡單！</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-slate-300 max-w-3xl mx-auto font-light leading-relaxed">
+                樂高 LEGO 的稱霸之路：資源與能耐的神級演出 🚀
+            </p>
+        </div>
+
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
+            <svg class="w-6 h-6 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-20 relative">
+        <!-- Introduction -->
+        <div class="max-w-4xl mx-auto mb-32">
+            <p class="text-2xl md:text-3xl text-slate-300 leading-snug font-light italic border-l-4 border-lego-red pl-8 py-2">
+                這不只是一篇關於玩具的介紹，而是一場關於「擁有好牌（資源）」與「打得一手好球（能耐）」的商業大戲！
+            </p>
+            <p class="mt-12 text-lg text-slate-400 leading-loose">
+                如果你曾踩過地上的樂高積木，那種足以讓你瞬間跳起「痛覺之舞」的堅硬感，其實正是這家丹麥公司稱霸全球玩具界的縮影：極度精準、毫不妥協，且韌性驚人。今天，我們不聊怎麼拼模型，而是要以一個知識份子的視角，剖析這塊 2x4 的塑膠積木背後，隱藏著怎樣的商業智慧（RBV 觀點）。
+            </p>
+        </div>
+
+        <!-- Section 1: RBV Concept -->
+        <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-32">
+            <div class="lg:col-span-5 flex flex-col justify-center">
+                <h2 class="text-3xl font-bold mb-6 flex items-center gap-3">
+                    <span class="w-12 h-1 bg-lego-yellow inline-block"></span>
+                    商業小教室
+                </h2>
+                <h3 class="text-4xl font-extrabold font-display mb-8 leading-tight">
+                    什麼是「資源與能耐」？<br/>
+                    <span class="text-dark-accent">這不是廢話，是致勝關鍵！</span>
+                </h3>
+            </div>
+            <div class="lg:col-span-7">
+                <div class="glass-card p-8 md:p-12 hover:bg-slate-800/50 transition-colors">
+                    <div class="space-y-6 text-slate-300 leading-relaxed">
+                        <p>在管理學的「資源基礎觀點」（Resource-Based View, RBV）裡，一家公司的成功並非偶然。</p>
+                        <div class="bg-lego-black/40 p-6 rounded-2xl border-l-4 border-lego-blue">
+                            <p class="font-bold text-white mb-2 underline decoration-lego-blue decoration-2 underline-offset-4">白話文解析：</p>
+                            <p>想像你在玩一款 RPG 遊戲，「資源」就是你身上的神級裝備和頂級血槽（你有什麼）；「能耐」則是你能把這些裝備發揮到極致、連出大招的戰鬥技巧（你能做什麼）。</p>
+                        </div>
+                        <p>樂高的成功，就在於它完美符合了 <span class="text-white font-bold">VRIO 框架</span>：它的技術具有價值（Valuable）、稀有（Rare）、難以模仿（Inimitable），且被組織良好地運用（Organized）。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: History (Bento Grid) -->
+        <section class="mb-32">
+            <h2 class="text-4xl font-black font-display text-center mb-16">樂高前傳：<span class="text-lego-red">涅槃重生</span></h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bento-item glass-card p-8 md:col-span-2">
+                    <div class="text-lego-yellow text-4xl mb-4">🪵</div>
+                    <h4 class="text-2xl font-bold mb-4">從木頭小鴨起家</h4>
+                    <p class="text-slate-400">1932 年創立於丹麥。1947 年購入塑膠射出機，1958 年完善了專利的「凸點管腔」連結系統，奠定了「凹凸相扣」的神級規格。</p>
+                </div>
+                <div class="bento-item bg-lego-red/20 border border-lego-red/30 backdrop-blur-md rounded-[24px] p-8">
+                    <div class="text-white text-4xl mb-4">📉</div>
+                    <h4 class="text-2xl font-bold mb-4">差點完蛋的災難</h4>
+                    <p class="text-red-100/70 text-sm">1990s - 2003年：盲目擴張，賣珠寶、衣服、品質不一的電玩，導致核心產品荒廢，2003 年幾乎宣布倒閉。</p>
+                </div>
+                <div class="bento-item bg-lego-blue/20 border border-lego-blue/30 backdrop-blur-md rounded-[24px] p-8">
+                    <div class="text-white text-4xl mb-4">👑</div>
+                    <h4 class="text-2xl font-bold mb-4">王者歸來</h4>
+                    <p class="text-blue-100/70 text-sm">2004 年轉捩點：實施「回到基礎」（Back to Basics）策略，大幅精簡零件、優化供應鏈，開啟 IP 聯名之路。</p>
+                </div>
+                <div class="bento-item glass-card p-8 md:col-span-2 flex items-center justify-center">
+                    <blockquote class="text-xl italic text-center font-light">
+                        "如果弄丟了核心資源，再強的能耐也救不回歪掉的品牌。"
+                    </blockquote>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Why it's Hermes of Toy Industry -->
+        <section class="mb-32">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-black font-display mb-4">為什麼樂高是玩具界的「愛馬仕」？</h2>
+                <p class="text-slate-500 uppercase tracking-widest text-sm">Core Competitive Advantages</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Advantage 1 -->
+                <div class="group">
+                    <div class="h-full glass-card p-10 border-b-4 border-b-lego-red group-hover:bg-slate-800/80 transition-all duration-500">
+                        <div class="w-16 h-16 rounded-2xl bg-lego-red/20 flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+                            <svg class="w-8 h-8 text-lego-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                        </div>
+                        <h4 class="text-xl font-bold mb-4 text-white">變態級精密製造</h4>
+                        <p class="text-slate-400 text-sm leading-relaxed">誤差不到 0.002 毫米！50 年前的積木與今天依然完美相容。這種物理相容性形成了極高的技術門檻。</p>
+                    </div>
+                </div>
+                <!-- Advantage 2 -->
+                <div class="group">
+                    <div class="h-full glass-card p-10 border-b-4 border-b-lego-yellow group-hover:bg-slate-800/80 transition-all duration-500">
+                        <div class="w-16 h-16 rounded-2xl bg-lego-yellow/20 flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+                            <svg class="w-8 h-8 text-lego-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        </div>
+                        <h4 class="text-xl font-bold mb-4 text-white">跨界超能力</h4>
+                        <p class="text-slate-400 text-sm leading-relaxed">與星際大戰、哈利波特、漫威深度結盟。透過 IP 授權，將玩具轉化為具備通膨價值的「收藏品」。</p>
+                    </div>
+                </div>
+                <!-- Advantage 3 -->
+                <div class="group">
+                    <div class="h-full glass-card p-10 border-b-4 border-b-lego-blue group-hover:bg-slate-800/80 transition-all duration-500">
+                        <div class="w-16 h-16 rounded-2xl bg-lego-blue/20 flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+                            <svg class="w-8 h-8 text-lego-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                        </div>
+                        <h4 class="text-xl font-bold mb-4 text-white">大人也瘋狂的社群</h4>
+                        <p class="text-slate-400 text-sm leading-relaxed">AFOL 鐵粉與 LEGO Ideas 平台實踐「共同創造」(Co-creation)，讓積木擁有無限生命力。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Challenges -->
+        <section class="mb-32 py-16 bg-slate-900/50 rounded-[40px] px-8 md:px-16 border border-white/5">
+            <h2 class="text-4xl font-black font-display mb-12 text-center">完美背後的煩惱：大人的世界也很難！ 😫</h2>
+            <div class="space-y-12 max-w-4xl mx-auto">
+                <div class="flex flex-col md:flex-row gap-8 items-start">
+                    <div class="text-5xl">🌿</div>
+                    <div>
+                        <h4 class="text-2xl font-bold text-white mb-3">「塑膠感」的環保危機</h4>
+                        <p class="text-slate-400 leading-relaxed">如何在 ESG 浪潮下轉型？2023 年放棄 PET 塑膠計畫，因為無法維持完美手感。這是一場綠色革命與品質堅持的拉鋸戰。</p>
+                    </div>
+                </div>
+                <div class="flex flex-col md:flex-row gap-8 items-start">
+                    <div class="text-5xl">📱</div>
+                    <div>
+                        <h4 class="text-2xl font-bold text-white mb-3">螢幕 vs. 積木</h4>
+                        <p class="text-slate-400 leading-relaxed">數位原生代偏好手遊與社群。樂高嘗試 AR 與手遊，但如何找回實體積木「卡嗒」一聲的治癒感？</p>
+                    </div>
+                </div>
+                <div class="flex flex-col md:flex-row gap-8 items-start">
+                    <div class="text-5xl">⚖️</div>
+                    <div>
+                        <h4 class="text-2xl font-bold text-white mb-3">「樂拼」之亂</h4>
+                        <p class="text-slate-400 leading-relaxed">物理專利過期後，低價仿冒品充斥。每年花費天文數字的訴訟費，只為守住品牌的最後一道防線。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Future -->
+        <section class="mb-32">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="order-2 lg:order-1">
+                    <h2 class="text-4xl font-black font-display mb-8">下一站：<br/><span class="text-dark-accent">樂高元宇宙與綠色革命</span></h2>
+                    <ul class="space-y-6">
+                        <li class="flex gap-4">
+                            <span class="w-6 h-6 rounded-full bg-lego-yellow flex-shrink-0 mt-1"></span>
+                            <div>
+                                <p class="font-bold text-lg text-white">10 億美元的綠色挑戰</p>
+                                <p class="text-slate-400">砸重金研發「不傷害地球的積木」，決定下一個百年的生存權。</p>
+                            </div>
+                        </li>
+                        <li class="flex gap-4">
+                            <span class="w-6 h-6 rounded-full bg-lego-red flex-shrink-0 mt-1"></span>
+                            <div>
+                                <p class="font-bold text-lg text-white">轉型「體驗提供者」</p>
+                                <p class="text-slate-400">透過 LEGOLAND 與全球直營店，打造全通路的會員生態圈。</p>
+                            </div>
+                        </li>
+                        <li class="flex gap-4">
+                            <span class="w-6 h-6 rounded-full bg-lego-blue flex-shrink-0 mt-1"></span>
+                            <div>
+                                <p class="font-bold text-lg text-white">聯手 Epic Games</p>
+                                <p class="text-slate-400">在虛擬世界打造「兒童安全版元宇宙」，模糊虛實界線。</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="order-1 lg:order-2 flex justify-center">
+                    <div class="relative w-72 h-72 md:w-96 md:h-96">
+                        <div class="absolute inset-0 bg-lego-yellow/20 rounded-full blur-3xl animate-pulse-slow"></div>
+                        <div class="relative z-10 w-full h-full glass-card flex items-center justify-center p-12 animate-float">
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="w-20 h-20 bg-lego-red rounded-lg shadow-xl shadow-lego-red/30"></div>
+                                <div class="w-20 h-20 bg-lego-blue rounded-lg shadow-xl shadow-lego-blue/30 translate-y-4"></div>
+                                <div class="w-20 h-20 bg-lego-yellow rounded-lg shadow-xl shadow-lego-yellow/30 -translate-y-4"></div>
+                                <div class="w-20 h-20 bg-slate-100 rounded-lg shadow-xl shadow-white/20"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conclusion -->
+        <section class="max-w-4xl mx-auto text-center py-20 px-8 rounded-[40px] border border-white/10 relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-lego-red via-lego-yellow to-lego-blue"></div>
+            <h2 class="text-3xl font-black mb-10 tracking-widest uppercase">總結</h2>
+            <p class="text-xl text-slate-300 leading-relaxed mb-8">
+                樂高的成功，是靠著 <span class="text-white font-bold underline decoration-lego-red decoration-2">極致品質（硬資源）</span> 加上 <span class="text-white font-bold underline decoration-lego-yellow decoration-2">與時俱進的跨界想像力（真能耐）</span>。
+            </p>
+            <p class="text-slate-400 leading-relaxed mb-12">
+                它告訴我們，一個強大的企業必須能敏銳地在環境變化中重新組合自己的資源。下一輪的考驗在於它能不能在「變綠」與「數位化」的過程中，依舊保有那份讓人感動的手感。身為樂高粉，看著它從破產邊緣爬回王座，我們除了感嘆其商業策略的精妙，或許更該開始思考：下一次錢包大失血，會是為了哪一個聯名款呢？💸
+            </p>
+            <div class="flex justify-center gap-4">
+                <span class="px-6 py-2 rounded-full border border-white/10 text-sm hover:bg-white/5 transition-all cursor-default">#BusinessStrategy</span>
+                <span class="px-6 py-2 rounded-full border border-white/10 text-sm hover:bg-white/5 transition-all cursor-default">#LEGO</span>
+                <span class="px-6 py-2 rounded-full border border-white/10 text-sm hover:bg-white/5 transition-all cursor-default">#RBV</span>
+            </div>
+        </section>
+    </main>
+
+    <!-- Floating Decor -->
+    <div class="fixed top-20 -right-20 w-64 h-64 bg-lego-blue/5 rounded-full blur-[100px] -z-10"></div>
+    <div class="fixed bottom-20 -left-20 w-64 h-64 bg-lego-red/5 rounded-full blur-[100px] -z-10"></div>
+
+</body>
+</html>
+
