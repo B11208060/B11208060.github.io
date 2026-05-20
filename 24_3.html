@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOOK 歷史與生活知識庫 | 學生專屬</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Noto Sans TC"', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#FF6B6B',
+                        secondary: '#4ECDC4',
+                        dark: '#2C3E50',
+                        light: '#F7F9F9'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* 自訂滾動條 */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8; 
+        }
+        /* 聊天室動畫 */
+        .message-enter {
+            animation: slideIn 0.3s ease-out forwards;
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* FAQ 折疊動畫 */
+        .faq-answer {
+            transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+        .faq-answer.open {
+            max-height: 500px;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="bg-light text-dark font-sans antialiased selection:bg-primary selection:text-white">
+
+    <!-- 導覽列 -->
+    <nav class="fixed w-full bg-white/90 backdrop-blur-md shadow-sm z-50 transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center gap-2 cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <div class="w-10 h-10 bg-primary text-white rounded-xl flex items-center justify-center font-bold text-xl shadow-lg shadow-primary/30">
+                        <i class="fa-solid fa-book-open"></i>
+                    </div>
+                    <span class="font-black text-xl tracking-wider text-dark">HOOK<span class="text-primary">知識庫</span></span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#chat-section" class="text-gray-600 hover:text-primary font-medium transition-colors">AI 筆記對話</a>
+                    <a href="#resources" class="text-gray-600 hover:text-primary font-medium transition-colors">影片資源庫</a>
+                    <a href="#faq" class="text-gray-600 hover:text-primary font-medium transition-colors">常見問題</a>
+                </div>
+                <!-- 手機版選單按鈕 -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-600 hover:text-primary focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- 手機版選單 -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100">
+            <a href="#chat-section" class="block px-4 py-3 text-gray-600 hover:bg-light hover:text-primary">AI 筆記對話</a>
+            <a href="#resources" class="block px-4 py-3 text-gray-600 hover:bg-light hover:text-primary">影片資源庫</a>
+            <a href="#faq" class="block px-4 py-3 text-gray-600 hover:bg-light hover:text-primary">常見問題</a>
+        </div>
+    </nav>
+
+    <!-- 英雄區塊 Hero Section -->
+    <section class="pt-32 pb-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12">
+        <div class="flex-1 text-center md:text-left">
+            <div class="inline-block px-4 py-1.5 rounded-full bg-secondary/10 text-secondary font-bold text-sm mb-6 border border-secondary/20">
+                <i class="fa-solid fa-graduation-cap mr-2"></i>專為學生打造的學習資源
+            </div>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-black leading-tight mb-6">
+                輕鬆探索歷史與生活<br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-orange-400">
+                    一鍵解答你的好奇心
+                </span>
+            </h1>
+            <p class="text-lg text-gray-600 mb-8 leading-relaxed max-w-2xl mx-auto md:mx-0">
+                本網站匯集了 HOOK 頻道的精彩內容，包含《世界史》、《料理史王》、《行萬里路》等精華逐字稿。透過內建的 NotebookLM AI 助手，快速尋找歷史冷知識與奇妙故事！
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                <a href="#chat-section" class="px-8 py-4 bg-primary text-white font-bold rounded-xl shadow-lg shadow-primary/30 hover:-translate-y-1 hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-sparkles"></i> 開始 AI 對話
+                </a>
+                <a href="#resources" class="px-8 py-4 bg-white text-dark border-2 border-gray-200 font-bold rounded-xl hover:border-primary hover:text-primary transition-all duration-300 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-compass"></i> 探索資源庫
+                </a>
+            </div>
+        </div>
+        <div class="flex-1 relative w-full max-w-md">
+            <!-- 裝飾性圖形 -->
+            <div class="absolute inset-0 bg-gradient-to-tr from-secondary/20 to-primary/20 rounded-3xl transform rotate-6 scale-105 z-0"></div>
+            <div class="bg-white p-6 rounded-3xl shadow-xl relative z-10 border border-gray-100">
+                <div class="flex items-center gap-3 mb-4 pb-4 border-b border-gray-100">
+                    <div class="w-3 h-3 rounded-full bg-red-400"></div>
+                    <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
+                    <div class="w-3 h-3 rounded-full bg-green-400"></div>
+                </div>
+                <div class="space-y-4">
+                    <div class="flex gap-3">
+                        <div class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center text-xs"><i class="fa-solid fa-user"></i></div>
+                        <div class="bg-gray-100 p-3 rounded-2xl rounded-tl-none text-sm text-gray-700">古埃及人怎麼製作木乃伊？</div>
+                    </div>
+                    <div class="flex gap-3 flex-row-reverse">
+                        <div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-xs"><i class="fa-solid fa-robot"></i></div>
+                        <div class="bg-primary/10 p-3 rounded-2xl rounded-tr-none text-sm text-gray-800">根據《埃及特輯》，他們會把內臟抽出來，把身體防腐風乾。這就像是他們前往永生世界的「2B鉛筆」考試裝備呢！</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NotebookLM 對話區塊 -->
+    <section id="chat-section" class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-black mb-4">NotebookLM 智能筆記助手</h2>
+                <p class="text-gray-600">在此輸入您想查詢的主題（例如：埃及、土耳其、巴菲特、洗澡、海盜），AI 將從 HOOK 逐字稿資料庫中為您找尋答案。</p>
+            </div>
+
+            <!-- 聊天 UI -->
+            <div class="bg-light rounded-3xl shadow-lg border border-gray-200 overflow-hidden flex flex-col h-[500px]">
+                <!-- 聊天頭部 -->
+                <div class="bg-dark text-white p-4 flex items-center gap-3 shadow-md z-10">
+                    <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-xl shadow-inner">
+                        <i class="fa-solid fa-brain"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold">歷史知識庫 AI</h3>
+                        <p class="text-xs text-gray-300">上線中 • 基於 HOOK 影片逐字稿</p>
+                    </div>
+                </div>
+
+                <!-- 訊息顯示區 -->
+                <div id="chat-messages" class="flex-1 p-4 sm:p-6 overflow-y-auto space-y-6 bg-slate-50">
+                    <!-- 歡迎訊息 -->
+                    <div class="flex gap-3 message-enter">
+                        <div class="w-8 h-8 rounded-full bg-primary flex-shrink-0 text-white flex items-center justify-center text-xs mt-1 shadow-sm">
+                            <i class="fa-solid fa-robot"></i>
+                        </div>
+                        <div class="bg-white p-4 rounded-2xl rounded-tl-none text-sm md:text-base text-gray-700 shadow-sm border border-gray-100 max-w-[85%]">
+                            同學你好！👋 我是基於 HOOK 影片逐字稿建立的知識庫助手。
+                            你可以問我關於：<br>
+                            <span class="inline-block mt-2 font-medium text-primary">🌍 旅遊（如：土耳其地下城、埃及金字塔、日本鳥取）</span><br>
+                            <span class="inline-block mt-1 font-medium text-secondary">⏳ 歷史（如：披薩演變史、洗澡演變史、海盜吃什麼）</span><br>
+                            <span class="inline-block mt-1 font-medium text-orange-500">🍔 生活挑戰（如：巴菲特飲食法、全家便利商店美食）</span><br>
+                            想知道什麼呢？
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 輸入區 -->
+                <div class="p-4 bg-white border-t border-gray-200">
+                    <form id="chat-form" class="flex gap-2 relative">
+                        <input type="text" id="chat-input" placeholder="輸入關鍵字，例如：古人怎麼洗澡？" class="flex-1 px-5 py-4 bg-gray-100 border-transparent focus:bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 rounded-xl outline-none transition-all w-full text-gray-700">
+                        <button type="submit" class="w-14 h-14 bg-primary hover:bg-red-500 text-white rounded-xl flex items-center justify-center transition-colors flex-shrink-0 shadow-md">
+                            <i class="fa-solid fa-paper-plane text-lg"></i>
+                        </button>
+                    </form>
+                    <div class="mt-2 text-xs text-center text-gray-400">推薦關鍵字：<span class="cursor-pointer hover:text-primary" onclick="setInput('土耳其')">土耳其</span>、<span class="cursor-pointer hover:text-primary" onclick="setInput('洗澡')">洗澡</span>、<span class="cursor-pointer hover:text-primary" onclick="setInput('埃及')">埃及</span>、<span class="cursor-pointer hover:text-primary" onclick="setInput('巴菲特')">巴菲特</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 資源庫 Resource Library -->
+    <section id="resources" class="py-20 bg-slate-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-black mb-4">📚 分類影片資源庫</h2>
+                <p class="text-gray-600">整理自 HOOK 各大知名系列，點擊了解主題精華。</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- 資源卡片 1 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group cursor-pointer">
+                    <div class="h-48 bg-gradient-to-br from-blue-400 to-indigo-600 flex items-center justify-center relative overflow-hidden">
+                        <i class="fa-solid fa-earth-americas text-6xl text-white/50 group-hover:scale-110 transition-transform duration-500"></i>
+                        <div class="absolute bottom-3 left-3 bg-black/30 backdrop-blur-sm text-white px-3 py-1 rounded-lg text-xs font-bold">行萬里路系列</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">世界文化探險</h3>
+                        <p class="text-gray-600 text-sm line-clamp-3">跟著腳步前往土耳其卡帕多奇亞看千年地下城、去埃及金字塔了解法老木乃伊的秘密，還有日本冷門卻美麗的鳥取與鎌倉！</p>
+                        <div class="mt-4 flex flex-wrap gap-2 text-xs text-gray-500">
+                            <span class="bg-gray-100 px-2 py-1 rounded">#土耳其</span>
+                            <span class="bg-gray-100 px-2 py-1 rounded">#埃及</span>
+                            <span class="bg-gray-100 px-2 py-1 rounded">#日本</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 資源卡片 2 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group cursor-pointer">
+                    <div class="h-48 bg-gradient-to-br from-orange-400 to-red-500 flex items-center justify-center relative overflow-hidden">
+                        <i class="fa-solid fa-utensils text-6xl text-white/50 group-hover:scale-110 transition-transform duration-500"></i>
+                        <div class="absolute bottom-3 left-3 bg-black/30 backdrop-blur-sm text-white px-3 py-1 rounded-lg text-xs font-bold">料理史王 & 食代歷量</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">飲食與生活演變史</h3>
+                        <p class="text-gray-600 text-sm line-clamp-3">穿越時空！古人洗澡竟然用豬胰臟塗在身上？大航海時代的海盜吃比石頭還硬的餅乾？二戰士兵的口糧又是長怎樣？</p>
+                        <div class="mt-4 flex flex-wrap gap-2 text-xs text-gray-500">
+                            <span class="bg-gray-100 px-2 py-1 rounded">#披薩史</span>
+                            <span class="bg-gray-100 px-2 py-1 rounded">#洗澡演變</span>
+                            <span class="bg-gray-100 px-2 py-1 rounded">#海盜餐</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 資源卡片 3 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group cursor-pointer">
+                    <div class="h-48 bg-gradient-to-br from-green-400 to-emerald-500 flex items-center justify-center relative overflow-hidden">
+                        <i class="fa-solid fa-clock text-6xl text-white/50 group-hover:scale-110 transition-transform duration-500"></i>
+                        <div class="absolute bottom-3 left-3 bg-black/30 backdrop-blur-sm text-white px-3 py-1 rounded-lg text-xs font-bold">24小時挑戰</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">極限飲食挑戰</h3>
+                        <p class="text-gray-600 text-sm line-clamp-3">體驗各種極端飲食生活：體驗股神巴菲特的三餐（六歲小孩飲食法）、24小時只吃咖啡廳甜點、或者全吃韓國便利商店美食！</p>
+                        <div class="mt-4 flex flex-wrap gap-2 text-xs text-gray-500">
+                            <span class="bg-gray-100 px-2 py-1 rounded">#巴菲特</span>
+                            <span class="bg-gray-100 px-2 py-1 rounded">#便利商店</span>
+                            <span class="bg-gray-100 px-2 py-1 rounded">#咖啡膠囊</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-20 bg-white">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-black mb-4">常見問題 (FAQ)</h2>
+                <p class="text-gray-600">關於如何使用這個學習網站</p>
+            </div>
+
+            <div class="space-y-4">
+                <!-- FAQ Item 1 -->
+                <div class="border border-gray-200 rounded-2xl overflow-hidden bg-white hover:border-primary/50 transition-colors">
+                    <button class="faq-btn w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none" onclick="toggleFaq(this)">
+                        <span class="font-bold text-lg text-dark">這個知識庫的資料來源是什麼？</span>
+                        <i class="fa-solid fa-chevron-down text-gray-400 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer px-6 bg-gray-50">
+                        <p class="py-4 text-gray-600">本知識庫的所有資料，皆來自於知名 YouTuber「HOOK」的各系列影片逐字稿，包含《行萬里路》、《料理史王》、《食代歷量》、《史來哲靈》等極具教育與娛樂意義的內容。</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="border border-gray-200 rounded-2xl overflow-hidden bg-white hover:border-primary/50 transition-colors">
+                    <button class="faq-btn w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none" onclick="toggleFaq(this)">
+                        <span class="font-bold text-lg text-dark">我要如何與 NotebookLM 筆記助手互動？</span>
+                        <i class="fa-solid fa-chevron-down text-gray-400 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer px-6 bg-gray-50">
+                        <p class="py-4 text-gray-600">非常簡單！您只需要在上方「AI 筆記對話」區塊的輸入框中，打上您感興趣的關鍵字（如：羅馬、木乃伊、海盜、化妝品），系統就會自動從龐大的逐字稿資料中，為您萃取並總結相關的歷史小知識。</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="border border-gray-200 rounded-2xl overflow-hidden bg-white hover:border-primary/50 transition-colors">
+                    <button class="faq-btn w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none" onclick="toggleFaq(this)">
+                        <span class="font-bold text-lg text-dark">這對學生做報告有什麼幫助？</span>
+                        <i class="fa-solid fa-chevron-down text-gray-400 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer px-6 bg-gray-50">
+                        <p class="py-4 text-gray-600">這裡收錄了許多課本上不會詳細記載的「庶民生活史」與「冷知識」，例如：100年前的人怎麼化妝、大航海時代平民的飲食等。這些生動的細節非常適合用來豐富歷史報告或課堂簡報的趣味性！</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white pt-12 pb-6">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="flex items-center justify-center gap-2 mb-6">
+                <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center font-bold shadow-lg">
+                    <i class="fa-solid fa-book-open text-sm"></i>
+                </div>
+                <span class="font-black text-xl tracking-wider">HOOK<span class="text-primary">知識庫</span></span>
+            </div>
+            <p class="text-gray-400 mb-6 text-sm">這是一個由 AI 驅動的模擬知識庫專案，旨在提供學生互動式學習體驗。<br>所有內容整理自公開影片之逐字稿。</p>
+            <div class="border-t border-gray-700 pt-6 text-gray-500 text-xs">
+                &copy; 2026 HOOK History & Lifestyle Knowledge Base. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript 邏輯 -->
+    <script>
+        // 手機版選單切換
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // FAQ 折疊邏輯
+        function toggleFaq(button) {
+            const answer = button.nextElementSibling;
+            const icon = button.querySelector('i');
+            
+            // 關閉其他開啟的 FAQ
+            document.querySelectorAll('.faq-answer.open').forEach(el => {
+                if (el !== answer) {
+                    el.classList.remove('open');
+                    el.previousElementSibling.querySelector('i').style.transform = 'rotate(0deg)';
+                }
+            });
+
+            // 切換當前 FAQ
+            if (answer.classList.contains('open')) {
+                answer.classList.remove('open');
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                answer.classList.add('open');
+                icon.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        // 模擬 NotebookLM 的知識庫字典
+        const knowledgeBase = [
+            {
+                keywords: ['巴菲特', '飲食', '可樂', '六歲'],
+                response: '根據影片《巴菲特三餐吃什麼》：巴菲特覺得全世界最快樂的年紀是六歲，所以他一生都只吃六歲小孩吃的東西！他每天都要喝櫻桃口味的百事可樂，也喜歡吃熱狗堡、厚切牛排（不吃綠色蔬菜），還有很濃的冰淇淋配巧克力。這就是他的「快樂冠軍」神秘飲食法！🍔🥤'
+            },
+            {
+                keywords: ['土耳其', '地下城', '卡帕多奇亞', '冰淇淋', '凱末爾', '伊斯蘭'],
+                response: '在 HOOK 的《土耳其特輯》中提到：<br>1. **卡帕多奇亞**：不僅有熱氣球，還有千年歷史的「地下城」，是早期基督徒為躲避迫害而徒手挖出的避難所。<br>2. **凱末爾改革**：土耳其國父凱末爾推行世俗化，讓土耳其的伊斯蘭教變得非常活潑，街上可以喝酒，女性也可以自由選擇是否戴頭巾。<br>3. 傳統土耳其冰淇淋老闆真的會捉弄客人！🍦'
+            },
+            {
+                keywords: ['埃及', '金字塔', '木乃伊', '路邊攤'],
+                response: '探索《埃及特輯》的紀錄：<br>🏺 **死亡學測**：古埃及人將死亡看作一段旅程，製作木乃伊是為了永生。製作時甚至會從肛門把內臟取出來防腐！<br>🔺 **金字塔**：法老最初的陵墓叫做「馬斯塔巴」，後來才一層層疊成了階梯金字塔。<br>🍲 **路邊攤美食**：埃及傳統美食「庫莎麗 (Koshary)」混和了米飯、通心粉、豆子和特製番茄醬，碳水大爆發但超級便宜好吃！'
+            },
+            {
+                keywords: ['洗澡', '清潔', '肥皂', '豬胰臟'],
+                response: '穿越時空的《洗澡演變史》：<br>😲 古代美索不達米亞人會用植物灰燼混合「豬油」來清潔身體。<br>😲 到了古代中國，竟然會用**豬胰臟**混和黃豆粉、蛋清做成「胰子」來當作肥皂洗澡！<br>😲 16世紀的法國人因為害怕黑死病，曾經非常害怕洗澡，只能用毛巾擦拭並狂噴香水來掩蓋體味。'
+            },
+            {
+                keywords: ['海盜', '大航海', '餅乾'],
+                response: '在《海盜三餐吃什麼》中發現：<br>大航海時代的海盜生活其實很苦！因為船上無法保鮮，他們只能吃**比石頭還硬的船上餅乾**，吃之前甚至要敲碎或泡水，有時裡面還會長蟲（被稱作防身木屑地獄麵包）。他們會吃防壞血病的料理（洛神/檸檬），而且衣服通常都是搶來的，所以風格非常混搭！🏴‍☠️'
+            },
+            {
+                keywords: ['披薩', '義大利'],
+                response: '《披薩演變史》告訴我們：<br>早期的古希臘或中東人就會將麵糊放在火上烤成扁平麵包。後來傳入義大利那不勒斯，因為引進了番茄，才漸漸演變成我們現在熟知的披薩！有趣的是，義大利人對於在披薩上放鳳梨等奇怪配料可是會超級生氣的喔！🍕'
+            },
+            {
+                keywords: ['英國', '食物', '鰻魚凍', '難吃'],
+                response: '為什麼英國食物常被說難吃？《英國食物特輯》解答：<br>因為先天體質（常下雨、陽光少）導致新鮮食材不易取得，英國人發展出將食物「保存很久」的做法。例如地獄料理**「鰻魚凍 (Jellied Eels)」**，就是把鰻魚煮爛放涼成果凍以利保存。二戰時期物資缺乏，更是讓英國飲食文化雪上加霜！🇬🇧'
+            },
+            {
+                keywords: ['化妝品', '飛來波', '女郎', '粉餅'],
+                response: '在《百年老化妝品開箱》中提到：<br>以前的女生化妝是「不能說的秘密」，粉撲都要藏在陶瓷娃娃裡。直到一戰後「飛來波女郎 (Flapper)」崛起，女性經濟獨立，開始流行在公眾場合大方補妝！隨身粉餅盒、旋轉口紅開始出現，她們甚至會故意露小腿，並在**膝蓋上塗紅色腮紅**來吸引目光！💄'
+            },
+            {
+                keywords: ['歷史', '資源', '推薦'],
+                response: 'HOOK 頻道有很多有趣的歷史學習資源喔！<br>你可以搜尋：<br>👉 **世界史** (如：烏克蘭史)<br>👉 **料理史王** (如：海盜吃什麼、二戰吃什麼)<br>👉 **食代歷量** (如：洗澡史、披薩史)<br>👉 **行萬里路** (如：土耳其、埃及、日本)'
+            }
+        ];
+
+        // 處理聊天邏輯
+        const chatForm = document.getElementById('chat-form');
+        const chatInput = document.getElementById('chat-input');
+        const chatMessages = document.getElementById('chat-messages');
+
+        // 輔助函式：將關鍵字填入輸入框並送出
+        function setInput(keyword) {
+            chatInput.value = keyword;
+            chatForm.dispatchEvent(new Event('submit'));
+        }
+
+        // 添加訊息到聊天室
+        function addMessage(text, isUser = false) {
+            const msgDiv = document.createElement('div');
+            msgDiv.className = `flex gap-3 message-enter ${isUser ? 'flex-row-reverse' : ''}`;
+            
+            const iconHTML = isUser 
+                ? `<div class="w-8 h-8 rounded-full bg-dark flex-shrink-0 text-white flex items-center justify-center text-xs mt-1 shadow-sm"><i class="fa-solid fa-user"></i></div>`
+                : `<div class="w-8 h-8 rounded-full bg-primary flex-shrink-0 text-white flex items-center justify-center text-xs mt-1 shadow-sm"><i class="fa-solid fa-robot"></i></div>`;
+            
+            const bubbleClasses = isUser
+                ? `bg-dark text-white rounded-2xl rounded-tr-none`
+                : `bg-white text-gray-700 border border-gray-100`;
+
+            msgDiv.innerHTML = `
+                ${iconHTML}
+                <div class="p-4 ${bubbleClasses} text-sm md:text-base shadow-sm max-w-[85%] leading-relaxed">
+                    ${text}
+                </div>
+            `;
+            
+            chatMessages.appendChild(msgDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // 處理表單送出
+        chatForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const query = chatInput.value.trim();
+            if (!query) return;
+
+            // 1. 添加使用者訊息
+            addMessage(query, true);
+            chatInput.value = '';
+
+            // 2. 顯示思考中
+            const loadingId = 'loading-' + Date.now();
+            const loadingDiv = document.createElement('div');
+            loadingDiv.id = loadingId;
+            loadingDiv.className = `flex gap-3 message-enter`;
+            loadingDiv.innerHTML = `
+                <div class="w-8 h-8 rounded-full bg-primary flex-shrink-0 text-white flex items-center justify-center text-xs mt-1 shadow-sm">
+                    <i class="fa-solid fa-robot"></i>
+                </div>
+                <div class="bg-white p-4 rounded-2xl rounded-tl-none text-gray-500 shadow-sm border border-gray-100 max-w-[85%] flex items-center gap-2">
+                    <i class="fa-solid fa-circle-notch fa-spin"></i> 正在翻閱逐字稿資料庫...
+                </div>
+            `;
+            chatMessages.appendChild(loadingDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            // 3. 尋找答案並延遲回覆 (模擬 AI 生成)
+            setTimeout(() => {
+                document.getElementById(loadingId).remove();
+                
+                let foundResponse = null;
+                // 簡單的關鍵字比對
+                for (const item of knowledgeBase) {
+                    if (item.keywords.some(kw => query.includes(kw))) {
+                        foundResponse = item.response;
+                        break;
+                    }
+                }
+
+                if (!foundResponse) {
+                    foundResponse = '在目前的 HOOK 筆記庫中沒有找到與「' + query + '」直接相關的資料喔！要不要試著搜尋看看：<strong class="text-primary cursor-pointer" onclick="setInput(\'土耳其\')">土耳其</strong>、<strong class="text-primary cursor-pointer" onclick="setInput(\'洗澡\')">洗澡</strong> 或 <strong class="text-primary cursor-pointer" onclick="setInput(\'巴菲特\')">巴菲特</strong>？';
+                }
+
+                addMessage(foundResponse, false);
+            }, 1000 + Math.random() * 800); // 隨機延遲 1~1.8 秒
+        });
+    </script>
+</body>
+</html>
